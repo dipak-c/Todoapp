@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TodoList</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo">
+        <div class="one">
+          <h1>To-Do List</h1>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="two">
+            <label>Enter Todo :</label>
+            <input type="text" name="todolist" id="todolist" />
+            <button type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+      <div class="todo-list">
+        {% for item in data %}
+        <div class="todo-list-item">
+          <p>{{forloop.counter}}. {{item.todo}}</p>
+          <a href="{% url 'delete' item.id %}"
+            ><img src="../static/img/delete.png"
+          /></a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
